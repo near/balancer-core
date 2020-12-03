@@ -7,7 +7,8 @@
     "scripts": {
         "compile": "truffle compile",
         "testrpc": "ganache-cli --deterministic --gasLimit 10000000",
-        "test": "truffle test --network near_local",
+        "test:near": "truffle test --network near_local",
+        "test": "truffle test",
         "test:verbose": "VERBOSE=true truffle test",
         "coverage": "yarn solidity-coverage",
         "lint": "eslint .",
@@ -31,7 +32,7 @@
         "eslint-plugin-react": "^7.17.0",
         "ganache-core": "^2.6.1",
         "mocha": "^6.2.0",
-        "near-web3-provider": "https://github.com/near/near-web3-provider#3d16010cb362981849530fb2949280b4a7918353",
+        "near-web3-provider": "https://github.com/near/near-web3-provider#78aea2e0e8236aa2a1f825080ac81f642aef0f91",
         "solhint": "^2.3.0",
         "solidity-coverage": "^0.6.7",
         "standard": "^14.0.2",
