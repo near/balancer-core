@@ -5,9 +5,8 @@ const { NearProvider } = require('near-web3-provider');
 function NearLocalProvider() {
     return new NearProvider({
         nodeUrl: 'http://127.0.0.1:3030',
-        networkId: 'local',
+        networkId: 'balancer-tests',
         masterAccountId: 'test.near',
-        numTestAccounts: 5,
         keyPath: path.join(process.env.HOME, '.near/local/validator_key.json'),
     });
 }

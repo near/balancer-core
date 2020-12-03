@@ -7,7 +7,7 @@
     "scripts": {
         "compile": "truffle compile",
         "testrpc": "ganache-cli --deterministic --gasLimit 10000000",
-        "test:near": "truffle test --network near_local",
+        "test:near": "./test-near.sh",
         "test": "truffle test",
         "test:verbose": "VERBOSE=true truffle test",
         "coverage": "yarn solidity-coverage",

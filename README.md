@@ -121,11 +121,6 @@ Run:
     
 and then use the "initialize" and "run" commands.
 
-#### Copy key into Balancer project
-
-    mkdir -p neardev/local
-    cp ~/.near/local/validator_key.json neardev/local/test.near.json
-
 ### Test
 
     yarn test:near
