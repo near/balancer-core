@@ -29,17 +29,17 @@ module.exports = {
             skipDryRun: true,
             provider: () => NearTestNetProvider(),
         },
-        development: {
+        near_local: {
             network_id: "*",
             skipDryRun: true,
             provider: () => NearLocalProvider(),
         },
-        // development: {
-        //     host: 'localhost', // Localhost (default: none)
-        //     port: 8545, // Standard Ethereum port (default: none)
-        //     network_id: '*', // Any network (default: none)
-        //     gas: 10000000,
-        // },
+        development: {
+            host: 'localhost', // Localhost (default: none)
+            port: 8545, // Standard Ethereum port (default: none)
+            network_id: '*', // Any network (default: none)
+            gas: 10000000,
+        },
         coverage: {
             host: 'localhost',
             network_id: '*',
