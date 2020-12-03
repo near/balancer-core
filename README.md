@@ -79,5 +79,61 @@ relDif  : 1.6464292361378058e-12)
 
 Complete API docs are available at [https://docs.balancer.finance/smart-contracts/api](https://docs.balancer.finance/smart-contracts/api)
 
+---
+
+## NEAR Protocol
+
+Balancer's Solidity contracts also work on the NEAR EVM. Visit https://near.org for details on the technology. The following steps will walk through how to set up a local NEAR node and run Balancer's Truffle tests.
+
+### Setup
+
+#### Get Rust
+
+    curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+
+[Rustup reference site](https://rustup.rs/)
+
+#### Set up NEAR node
+
+Clone the [nearcore repository](https://github.com/near/nearcore) with:
+
+    git clone git@github.com:near/nearcore.git
+    
+Navigate to the project root:
+
+    cd nearcore
+    
+Build (this will take a while):
+
+    cargo build -p neard --release --features protocol_feature_evm,nightly_protocol_features
+    
+Initialize:
+
+    ./target/release/neard --home=$HOME/.near/local init    
+
+Run:
+
+    ./target/release/neard --home=$HOME/.near/local run
+    
+**Note**: hit Ctrl + C to stop the local node. If you want to pick up where you left off, just use this final "run" command again. If you'd like to start from scratch, remove the folder:
+
+    rm -rf ~/.near/local
+    
+and then use the "initialize" and "run" commands.
+
+#### Copy key into Balancer project
+
+    mkdir -p neardev/local
+    cp ~/.near/local/validator_key.json neardev/local/test.near.json
+
+### Test
+
+    yarn test:near
+    # or
+    npm run test:near
+    
+Expect the result:
+
+>87 passing
 
 <p align=center>⊙</p>
