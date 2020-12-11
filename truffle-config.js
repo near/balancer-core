@@ -1,37 +1,38 @@
-const path = require('path');
-
 const { NearProvider } = require('near-web3-provider');
-
-function NearLocalProvider() {
-    return new NearProvider({
-        nodeUrl: 'http://127.0.0.1:3030',
-        networkId: 'balancer-tests',
-        masterAccountId: 'test.near',
-        keyPath: path.join(process.env.HOME, '.near/local/validator_key.json'),
-    });
-}
-
-function NearTestNetProvider() {
-    return new NearProvider({
-        nodeUrl: 'http://34.82.212.1:3030',
-        networkId: 'default',
-        masterAccountId: '1.test.near',
-        evmAccountId: 'evm',
-        keyPath: path.join(__dirname, '1.test.near.json'),
-    });
-}
 
 module.exports = {
     networks: {
-        near: {
+        near_mainnet: {
             network_id: "*",
             skipDryRun: true,
-            provider: () => NearTestNetProvider(),
+            provider: () => new NearProvider({
+                networkId: 'mainnet',
+                masterAccountId: process.env.NEAR_MASTER_ACCOUNT,
+            }),
+        },
+        near_testnet: {
+            network_id: "*",
+            skipDryRun: true,
+            provider: () => new NearProvider({
+                networkId: 'testnet',
+                masterAccountId: 'test.near',
+            }),
+        },
+        near_betanet: {
+            network_id: "*",
+            skipDryRun: true,
+            provider: () => new NearProvider({
+                networkId: 'betanet',
+                masterAccountId: 'test.near',
+            }),
         },
         near_local: {
             network_id: "*",
             skipDryRun: true,
-            provider: () => NearLocalProvider(),
+            provider: () => new NearProvider({
+                networkId: 'local',
+                masterAccountId: 'test.near',
+            }),
         },
         development: {
             host: 'localhost', // Localhost (default: none)
