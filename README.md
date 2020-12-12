@@ -83,49 +83,42 @@ Complete API docs are available at [https://docs.balancer.finance/smart-contract
 
 ## NEAR Protocol
 
-Balancer's Solidity contracts also work on the NEAR EVM. Visit https://near.org for details on the technology. The following steps will walk through how to set up a local NEAR node and run Balancer's Truffle tests.
+Balancer's Solidity contracts also work on the NEAR EVM. Visit https://near.org for details on the technology. At the time of this writing the EVM is live on betanet, so the directions will be targeted there.
 
-### Setup
+### Get NEAR betanet account
 
-#### Get Rust
+Visit the betanet NEAR Wallet:
+http://wallet.betanet.near.org/
 
-    curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+Follow the instructions to create an account.
 
-[Rustup reference site](https://rustup.rs/)
+### Login with NEAR CLI
 
-#### Set up NEAR node
+Next we'll use NEAR CLI to login, which creates a full-access key as a file in your computer's `~/.near-credentials` directory.
 
-Clone the [nearcore repository](https://github.com/near/nearcore) with:
+See the [NEAR CLI documentation](https://docs.near.org/docs/development/near-cli) for specifics, but can be installed with:
 
-    git clone git@github.com:near/nearcore.git
+    npm install -g near-cli
+
+After it's installed, run:
+
+    env NEAR_ENV=betanet near login
     
-Navigate to the project root:
+You'll be redirected to Wallet. Please follow the directions on Wallet and return to your terminal application.
 
-    cd nearcore
-    
-Build (this will take a while):
+### Build and deploy with Truffle
 
-    cargo build -p neard --release --features protocol_feature_evm,nightly_protocol_features
-    
-Initialize:
+Truffle's configuration contains the custom provider from [near-web3-provider](https://github.com/near/near-web3-provider). 
 
-    ./target/release/neard --home=$HOME/.near/local init    
+Replace `MY_NAME` below with the name of your account, and run:
 
-Run:
+    env NEAR_MASTER_ACCOUNT=MY_NAME.betanet truffle migrate --network near_betanet    
 
-    ./target/release/neard --home=$HOME/.near/local run
-    
-**Note**: hit Ctrl + C to stop the local node. If you want to pick up where you left off, just use this final "run" command again. If you'd like to start from scratch, remove the folder:
+### Run tests
 
-    rm -rf ~/.near/local
-    
-and then use the "initialize" and "run" commands.
+Running tests is the same as standard truffle commands. For instance, to run tests on betanet the command is:
 
-### Test
-
-    yarn test:near
-    # or
-    npm run test:near
+    env NEAR_MASTER_ACCOUNT=MY_NAME.betanet truffle test --network near_betanet    
     
 Expect the result:
 

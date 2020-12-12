@@ -1,3 +1,4 @@
+const path = require('path');
 const { NearProvider } = require('near-web3-provider');
 
 module.exports = {
@@ -15,7 +16,7 @@ module.exports = {
             skipDryRun: true,
             provider: () => new NearProvider({
                 networkId: 'testnet',
-                masterAccountId: 'test.near',
+                masterAccountId: process.env.NEAR_MASTER_ACCOUNT,
             }),
         },
         near_betanet: {
@@ -23,7 +24,7 @@ module.exports = {
             skipDryRun: true,
             provider: () => new NearProvider({
                 networkId: 'betanet',
-                masterAccountId: 'test.near',
+                masterAccountId: process.env.NEAR_MASTER_ACCOUNT,
             }),
         },
         near_local: {
@@ -32,6 +33,7 @@ module.exports = {
             provider: () => new NearProvider({
                 networkId: 'local',
                 masterAccountId: 'test.near',
+                keyPath: path.join(process.env.HOME, '.near/local/validator_key.json')
             }),
         },
         development: {
