@@ -79,5 +79,49 @@ relDif  : 1.6464292361378058e-12)
 
 Complete API docs are available at [https://docs.balancer.finance/smart-contracts/api](https://docs.balancer.finance/smart-contracts/api)
 
+---
+
+## NEAR Protocol
+
+Balancer's Solidity contracts also work on the NEAR EVM. Visit https://near.org for details on the technology. At the time of this writing the EVM is live on betanet, so the directions will be targeted there.
+
+### Get NEAR betanet account
+
+Visit the betanet NEAR Wallet:
+http://wallet.betanet.near.org/
+
+Follow the instructions to create an account.
+
+### Login with NEAR CLI
+
+Next we'll use NEAR CLI to login, which creates a full-access key as a file in your computer's `~/.near-credentials` directory.
+
+See the [NEAR CLI documentation](https://docs.near.org/docs/development/near-cli) for specifics, but it can be installed with:
+
+    npm install -g near-cli
+
+After it's installed, run:
+
+    env NEAR_ENV=betanet near login
+    
+You'll be redirected to Wallet. Please follow the directions on Wallet and return to your terminal application.
+
+### Build and deploy with Truffle
+
+Truffle's configuration contains the custom provider from [near-web3-provider](https://github.com/near/near-web3-provider). 
+
+Replace `MY_NAME` below with the name of your account, and run:
+
+    env NEAR_MASTER_ACCOUNT=MY_NAME.betanet truffle migrate --network near_betanet    
+
+### Run tests
+
+Running tests is the same as standard Truffle commands. For instance, to run tests on betanet the command is:
+
+    env NEAR_MASTER_ACCOUNT=MY_NAME.betanet truffle test --network near_betanet    
+    
+Expect the result:
+
+>87 passing
 
 <p align=center>⊙</p>
