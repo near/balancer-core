@@ -96,7 +96,7 @@ Follow the instructions to create an account.
 
 Next we'll use NEAR CLI to login, which creates a full-access key as a file in your computer's `~/.near-credentials` directory.
 
-See the [NEAR CLI documentation](https://docs.near.org/docs/development/near-cli) for specifics, but can be installed with:
+See the [NEAR CLI documentation](https://docs.near.org/docs/development/near-cli) for specifics, but it can be installed with:
 
     npm install -g near-cli
 
@@ -116,7 +116,7 @@ Replace `MY_NAME` below with the name of your account, and run:
 
 ### Run tests
 
-Running tests is the same as standard truffle commands. For instance, to run tests on betanet the command is:
+Running tests is the same as standard Truffle commands. For instance, to run tests on betanet the command is:
 
     env NEAR_MASTER_ACCOUNT=MY_NAME.betanet truffle test --network near_betanet    
     
