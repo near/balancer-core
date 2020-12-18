@@ -106,6 +106,12 @@ After it's installed, run:
     
 You'll be redirected to Wallet. Please follow the directions on Wallet and return to your terminal application.
 
+### Create test accounts
+
+Truffle test on ethereum create accounts, but NEAR account is not just a key and need creating separately before run tests:
+
+    env NEAR_ENV=betanet near evm-dev-init MY_NAME.betanet 10
+
 ### Build and deploy with Truffle
 
 Truffle's configuration contains the custom provider from [near-web3-provider](https://github.com/near/near-web3-provider). 
