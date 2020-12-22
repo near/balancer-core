@@ -30,11 +30,23 @@ module.exports = {
         near_local: {
             network_id: "*",
             skipDryRun: true,
-            provider: () => new NearProvider({
-                networkId: 'local',
-                masterAccountId: 'test.near',
-                keyPath: path.join(process.env.HOME, '.near/local/validator_key.json')
-            }),
+            provider: () => {
+                if (process.env.NEAR_PYTEST) {
+                    // Test in nightly using nearcore pytest library
+                    return new NearProvider({
+                        networkId: 'local',
+                        masterAccountId: 'test0',
+                        keyPath: path.join(process.env.HOME, '.near/test0/validator_key.json'),
+                        nodeUrl: 'http://127.0.0.1:3040'
+                    })
+                } else {
+                    return new NearProvider({
+                        networkId: 'local',
+                        masterAccountId: 'test.near',
+                        keyPath: path.join(process.env.HOME, '.near/local/validator_key.json')
+                    })
+                }
+            }
         },
         development: {
             host: 'localhost', // Localhost (default: none)
